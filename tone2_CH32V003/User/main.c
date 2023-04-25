@@ -493,7 +493,7 @@ int main(void) {
                 notone2();
             }
 
-            Delay_Ms(6);
+            Delay_Ms(11);
 
         }
 
