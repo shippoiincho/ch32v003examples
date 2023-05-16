@@ -19,15 +19,22 @@ MounRiverStudio で新規 CH32V003 プロジェクトを作成の上、これら
 
 - TM1640
 
+![TM1640](pictures/tm1640.png)
+
 TM1640 を使った、LEDマトリックス制御。普通にGPIOを制御してるだけ。<br>
 PD2 を TM1640 の CLK に、PD3 を DATA に接続<br>
 
 - Neopixel
 
+![NEOPIXEL](pictures/neopixel.png)
+
 Neopixel LEDストリップの制御。SPI を 6MHz に設定して、Neopixel 1 bit= SPI 1 byte で送っている。<br>
 PC6 を Neopixel の DIN に接続<br>
 
 - I2Ctest
+
+
+![I2CTEST](pictures/I2Ctest.jpg)
 
 I2C で BMP280 センサーと SSD1306 OLED を制御。<br>
 BMP280 は 0x76、OLED は 0x3c にある前提。STM32と同じく、プログラム中では I2C の指定アドレスが*2倍*なので注意<br>
@@ -54,6 +61,8 @@ PD0を LOW に落とすと、PD2 のブザーから昔のPCでおなじみのピ
 これも Sleep mode 時は PD1 を受け付けないので、書き込み不可になるので注意<br>
 
 - tvout
+
+![TVOUT](pictures/tvout.png)
 
 NTSC のモノクローム・コンポジットビデオ信号(もどき)を発生させるデモ<br>
 PC4 と PC6 から適当な抵抗を挟んでビデオ信号に接続(下記は Vcc=3.3V の場合)<br>
