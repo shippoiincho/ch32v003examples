@@ -15,6 +15,8 @@ Create new project on MRS. Copy files into your project's User folder.<br>
 
 # CH32V003 テストプログラム集
 
+MounRiverStudio で新規 CH32V003 プロジェクトを作成の上、これらのファイルを User フォルダ中にコピーしてください。<br>
+
 - TM1640
 
 TM1640 を使った、LEDマトリックス制御。普通にGPIOを制御してるだけ。<br>
