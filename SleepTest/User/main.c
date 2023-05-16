@@ -13,7 +13,7 @@
 /*
  * Standby Mode test
  *
- * PD1 Input (Pull down to wake up)
+ * PD0 Input (Pull down to wake up)
  * PD2 Buzzer Out
  *
  */
@@ -50,7 +50,7 @@ void EXTI0_INT_INIT(void) {
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(GPIOD, &GPIO_InitStructure);
 
-    /* GPIOA.0 ----> EXTI_Line0 */
+    /* GPIOD.0 ----> EXTI_Line0 */
     GPIO_EXTILineConfig(GPIO_PortSourceGPIOD, GPIO_PinSource0);
     EXTI_InitStructure.EXTI_Line = EXTI_Line0;
     //   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
