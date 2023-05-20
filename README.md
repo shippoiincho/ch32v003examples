@@ -7,6 +7,7 @@
 - Polytone - Polyphonic beep test with PWM
 - SleepTest - Standby(stop) Mode and external wakeup test 
 - tvout - NTSC video output test
+- tvgame - Simple game demo
 
 Create new project on MRS. Copy files into your project's User folder.<br>
 "glcdfont.h" is a file from Adafruit_GFX Library. <br>
@@ -81,3 +82,14 @@ PC4 と PC6 から適当な抵抗を挟んでビデオ信号に接続(下記は 
 テキストVRAM で 32*24 文字が表示可能。
 画面サイズは変更可能だが、合計1500文字くらいで VRAM が確保できなくなるので注意<br>
 フォントは MSX のフォントを拝借<br>
+
+- tvgame
+
+
+![TVGAME1](pictures/tvgame1.jpg)
+![TVGAME2](pictures/tvgame2.png)
+
+tvout と tone を組み合わせた、テレビゲームっぽいデモ<br>
+tvout はスプライトもどき機能を追加<br>
+スーファミコントローラを入力に使用<br>
+スーファミコントローラの Data 入力が、なぜか浮くので 10k Ω抵抗でプルダウンしないと読めなかった<br>
