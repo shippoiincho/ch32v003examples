@@ -96,10 +96,10 @@ tvout はスプライトもどき機能を追加<br>
 
 ## Note: CH32V003 のブートローダについて
 
-CH32V003は boot0 ピンが存在しない代わりに、FLASH_STATR レジスタの bit14 を見て、どちらから起動するかを決めている<br>
-(Reference マニュアルには FLASH_OBKEYR と誤記されている)<br>
+CH32V003は boot0 ピンが存在しない代わりに、FLASH_STATR レジスタの bit14 を見て、BootLoader 領域か User 領域のどちらから起動するかを決めている<br>
+(Reference マニュアルには FLASH_OBTKEYR と誤記されている)<br>
 
-電源オン時には、かならず BootLoader から起動し、BootLoaderから明示的に UserMode を指定してリセット( NVIC_SystemReset() )しないと、
+電源オン時には、かならず BootLoader から起動し、BootLoaderから明示的に UserMode を指定してリセット NVIC_SystemReset() しないと、
 Userのコードに制御が渡らない<br>
 
 NRST ピンでリセットかけても、このレジスタの状態は書き換わらないので、UserMode から BootLoader を起動するには、電源を入れなおすか、
