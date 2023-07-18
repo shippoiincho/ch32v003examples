@@ -94,6 +94,39 @@ tvout はスプライトもどき機能を追加<br>
 スーファミコントローラを入力に使用<br>
 スーファミコントローラの Data 入力が、なぜか浮くので 10k Ω抵抗でプルダウンしないと読めなかった<br>
 
+## Note: CH32V003 の動作クロックについて
+
+MRSの生成コードは (現状では Arduinoも) EVT 開発ボード向けに作られており、デフォルトの設定は「外部クロック2倍48MHz」になっています。
+STM32系の MCU では、電源ONやリセットの時点では「内部クロック」で動作しており、スタートアップのコードでクロックを切り替えるようになっています。
+切り替え先のクロックが準備できないときは、クロックの変更に失敗してそのまま内部クロックで動作し続けます。<br>
+
+CH32V003で外部クロック設定のまま外部クロックを接続しないと、切り替え先のクロックが準備できていないので、そのまま内部24MHz で動作し続けます。
+このとき、SystemCoreClock変数は 48MHz のままなので、クロックに依存する機能が設定とずれて動作します。
+(例えばDelay_Msが2倍の時間がかかるとか)<br>
+
+動作クロックを変更するには system_ch32v00x.c の以下の場所を書き換えます<br>
+
+```
+/* 
+* Uncomment the line corresponding to the desired System clock (SYSCLK) frequency (after 
+* reset the HSI is used as SYSCLK source).
+* If none of the define below is enabled, the HSI is used as System clock source. 
+*/
+
+//#define SYSCLK_FREQ_8MHz_HSI    8000000
+//#define SYSCLK_FREQ_24MHZ_HSI   HSI_VALUE
+//#define SYSCLK_FREQ_48MHZ_HSI   48000000
+//#define SYSCLK_FREQ_8MHz_HSE    8000000
+//#define SYSCLK_FREQ_24MHz_HSE   HSE_VALUE
+#define SYSCLK_FREQ_48MHz_HSE   48000000
+
+```
+
+SYSCLK_FREQ_48MHz_HSE から、SYSCLK_FREQ_48MHZ_HSIに変えると、内部クロック2倍48MHz 設定に変更されます。
+
+そもそも、外部クロック設定のままにすると PA1/PA2 が使えないので、もったいないですね。
+
+
 ## Note: CH32V003 のブートローダについて
 
 CH32V003は boot0 ピンが存在しない代わりに、FLASH_STATR レジスタの bit14 を見て、BootLoader 領域か User 領域のどちらから起動するかを決めている<br>
