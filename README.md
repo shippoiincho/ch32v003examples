@@ -8,6 +8,7 @@
 - SleepTest - Standby(stop) Mode and external wakeup test 
 - tvout - NTSC video output test
 - tvgame - Simple game demo
+- snes2atari - SNES pad ATARI joystick converter
 
 Create new project on MRS. Copy files into your project's User folder.<br>
 "glcdfont.h" is a file from Adafruit_GFX Library. <br>
@@ -93,6 +94,36 @@ tvout と tone を組み合わせた、テレビゲームっぽいデモ<br>
 tvout はスプライトもどき機能を追加<br>
 スーファミコントローラを入力に使用<br>
 スーファミコントローラの Data 入力が、なぜか浮くので 10k Ω抵抗でプルダウンしないと読めなかった<br>
+
+- snes2atari
+
+![SNESPAd](pictures/snespad00.png)
+
+スーファミコントローラを Atari 仕様ジョイスティック信号に変換する変換器。<br>
+電源はジョイスティックの 5V を使用する。
+3.3V では不安定だったが 5V で駆動すればちゃんと信号は読めるようだ。<br>
+
+```
+to ATARI Joystick
+ PC0 -- UP
+ PC1 -- DOWN
+ PC2 -- LEFT
+ PC3 -- RIGHT
+ PC4 -- Trigger A
+ PC5 -- Trigger B
+ VCC -- VCC
+ GND -- GND
+
+to SNES Pad
+ PD2 -- LATCH
+ PD3 -- CLK
+ PD4 -- DATA
+ VCC -- VCC
+ GND -- GND
+```
+
+
+
 
 ## Note: CH32V003 の動作クロックについて
 
