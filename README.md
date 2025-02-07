@@ -97,7 +97,7 @@ tvout はスプライトもどき機能を追加<br>
 
 - snes2atari
 
-![SNESPAd](pictures/snespad00.png)
+![SNESPAd](pictures/snespad00.jpg)
 
 スーファミコントローラを Atari 仕様ジョイスティック信号に変換する変換器。<br>
 電源はジョイスティックの 5V を使用する。
